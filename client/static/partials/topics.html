@@ -1,0 +1,66 @@
+<div ng-controller="TopicsController">
+  <div>
+      <p>
+        Welcome <span ng-bind="sessionUser.userName | sentenceCase"></span>
+        <li style="list-style:none"><button ng-click="logout()">Logout</button></li>
+      </p>
+      <input type="text" ng-model="filter_search">
+      <button ng-click="topic_search=filter_search">Seach</button>
+      <button ng-click="topic_search=filter_search=''">Clear Search</button>
+      <hr>
+
+  </div>
+
+  <table class="topics">
+    <thead>
+      <tr>
+        <th><button ng-click="sortBy('category')">Category </button>
+         <span class="sortorder" ng-show="sortProperty === 'category'" ng-class="{reverse: reverse}"></span>
+         </th>
+        <th><button ng-click = "sortBy('topic')">Topic </button>
+        <span class="sortorder" ng-show="sortProperty === 'topic'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th><button ng-click="sortBy('description')">Description</button>
+        <span class="sortorder" ng-show="sortProperty === 'description'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th><button ng-click="sortBy('_userId.name')">User</button>
+        <span class="sortorder" ng-show="sortProperty === '_userId.name'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th><button ng-click="sortBy('posts')">Posts</button>
+        <span class="sortorder" ng-show="sortProperty === 'posts'" ng-class="{reverse: reverse}"></span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="topic in topics | filter:topic_search | orderBy:sortProperty:reverse">
+      <td ng-bind="topic.category"></td>
+      <td><a href="#/topics/{{topic._id}}" ng-bind="topic.topic | sentenceCase"></a></td>
+      <td ng-bind="topic.description"></td>
+      <td> <a href="#/users/{{topic._userId._id}}"><p ng-bind="topic._userId.name | sentenceCase"></p></a></td>
+      <td ng-bind="topic._postId.length"></td>
+    </tr>
+  </tbody>
+  </table>
+<hr>
+<h2>Add a new Topic</h2>
+
+<p>
+  <label>Topic: <input type="text" ng-model="newTopic.title"></label>
+  <label>Description: <textarea ng-model="newTopic.description"></textarea></label>
+  Category:
+
+      <select ng-model="newTopic.category">
+                <option value="HTML">HTML</option>
+                <option value="MySQL">MySQL</option>
+                <option value="UX">UX</option>
+                <option value="Web Development">Web Development</option>
+      </select>
+</p>
+  <button ng-click="createTopic()">Add Topic</button>
+
+  <p>
+    <ul style="list-style:none" ng-repeat="error in errorsArray">
+      <li ng-bind="error"></li>
+    </ul>
+  </p>
+</div>

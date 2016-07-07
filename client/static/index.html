@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+
+    <!-- scripts here -->
+    <script src="./js/app.js"></script>
+    <script src="./js/routes.js"></script>
+
+    <!-- controllers here -->
+    <script src="./js/controllers/users.angular.js"></script>
+    <script src="./js/controllers/topics.angular.js"></script>
+    <script src="./js/controllers/boards.angular.js"></script>
+    <script src="./js/controllers/usersInfo.angular.js"></script>
+
+
+    <!-- factories here -->
+    <script src="./js/factories/user.angular.js"></script>
+    <script src="./js/factories/topic.angular.js"></script>
+    <script src="./js/factories/board.angular.js"></script>
+
+    <!--- Style sheets -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Font Awesome! -->
+    <script src="https://use.fontawesome.com/0aabbba72a.js"></script>
+    
+    <title>Welcome to Discussion Board</title>
+  </head>
+  <body ng-app="boardApp">
+    <div ng-view="">
+
+    </div>
+  </body>
+</html>

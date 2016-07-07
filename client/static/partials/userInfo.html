@@ -1,0 +1,14 @@
+<h1> User info</h1>
+<div ng-controller="usersInfo">
+  <div>
+    <a href="#/topics">Topics</a> | <a href="#/logout">Logout</a>
+  </div>
+  <h1 ng-bind="'Username: ' + UserInfo.userInfo.name | sentenceCase"></h1>
+
+  <br>
+  <ul style="list-style:none">
+    <li ng-bind="UserInfo.userInfo._topicId.length + ' Topic(s)'"></li>
+    <li ng-bind="UserInfo.userInfo._postId.length + ' Post(s)'"></li>
+    <li ng-bind="UserInfo.userInfo._commentId.length + ' Comment(s)'"></li>
+  </ul>
+</div>

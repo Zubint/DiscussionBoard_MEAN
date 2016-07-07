@@ -1,0 +1,61 @@
+<div ng-controller="BoardsController">
+  <h1> boards</h1>
+  <!-- yo: {{sessionUser}} -->
+    <a href="#/topics">Topics</a> | <button ng-click="logout()">Logout</button>
+  <hr>
+  <div>
+    <!-- {{topic}} -->
+    <div style="background-color:lightgray">
+    <hr>
+    <h2 style="background-color:lightpink"><a href="#/users/{{topic._userId._id}}" ng-bind="topic._userId.name | sentenceCase"></a>  posted a topic</h2>
+    <h3 ng-bind="topic.topic |sentenceCase"></h3>
+    <p ng-bind="topic.description"></p>
+    <hr>
+  </div>
+    <br>
+    <br>
+    <div style="background-color:lightblue">
+    <h3>Post your answer here</h3>
+    <textarea ng-model="newPost.comment"></textarea>
+    <button ng-click="createPost(topic._id)">POST</button>
+
+    <div ng-repeat="error in errorsArray">
+      <li style="list-style:none; color:red">{{error}}</li>
+    <hr>
+  </div>
+</div>
+    <div ng-repeat="post in topic._postId | orderBy:'-createdAt' track by $index">
+        <p ng-bind="post.createdAt | zDate"></p>
+
+                <button style="color:green" ng-click='addUpvotes(post)'>
+                  <i  style="color:green" class="fa fa-thumbs-up" aria-hidden="true">
+                  </i>
+                </button>
+                <p style="display:inline-block" ng-bind="post.upvotes"> </p>
+
+                <button style="color:red" ng-click='addDownvotes(post)'>
+                  <i style="color:red" class="fa fa-thumbs-down" aria-hidden="true">
+
+                  </i>
+                </button>
+                <p style="display:inline-block" ng-bind="post.downvotes"> </p>
+
+
+          <a href="#/users/{{post._userId._id}}" ng-bind="post._userId.name | sentenceCase"></a>
+          said: <span ng-bind="post.answer"></span>
+
+
+        <br>
+        <h5>here are comments</h5>
+        <div ng-repeat="comment in post._commentId | orderBy:'createdAt'">
+            <a href="#/users/{{comment._userId._id}}" ng-bind="comment._userId.name | sentenceCase"></a> said:  {{comment.comment}}<br>
+        </div>
+          <textarea ng-model="post.newComment"></textarea>
+          <!-- {{post[$index].newComment}} -->
+          <button ng-click="createComment(post)">Comment</button>
+          <hr>
+      </div>
+      <hr>
+      </div>
+    </div>
+</div>
